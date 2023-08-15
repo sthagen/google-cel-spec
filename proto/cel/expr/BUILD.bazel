@@ -132,7 +132,7 @@ go_proto_library(
 
 go_proto_library(
     name = "expr_go_proto",
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":expr_proto"],
     deps = [
         ":google_rpc_status_go_proto",
@@ -141,27 +141,27 @@ go_proto_library(
 
 go_proto_library(
     name = "syntax_go_proto",
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":syntax_proto"],
 )
 
 go_proto_library(
     name = "checked_go_proto",
     embed = [":syntax_go_proto"],
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":checked_proto"],
 )
 
 go_proto_library(
     name = "value_go_proto",
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":value_proto"],
 )
 
 go_proto_library(
     name = "eval_go_proto",
     embed = [":value_go_proto"],
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":eval_proto"],
     deps = [
         ":google_rpc_status_go_proto",
@@ -171,7 +171,7 @@ go_proto_library(
 go_proto_library(
     name = "explain_go_proto",
     embed = [":value_go_proto"],
-    importpath = "dev.cel/expr",
+    importpath = "cel.dev/expr",
     protos = [":explain_proto"],
 )
 

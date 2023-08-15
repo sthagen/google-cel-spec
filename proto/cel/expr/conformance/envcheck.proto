@@ -16,12 +16,12 @@
 
 syntax = "proto3";
 
-package dev.cel.expr.conformance;
+package cel.expr.conformance;
 
-import "dev/cel/expr/checked.proto";
+import "cel/expr/checked.proto";
 
 option cc_enable_arenas = true;
-option go_package = "dev.cel/expr/conformance";
+option go_package = "cel.dev/expr/conformance";
 option java_multiple_files = true;
 option java_outer_classname = "EnvcheckProto";
 option java_package = "dev.cel.expr.conformance";
@@ -33,5 +33,5 @@ message Env {
   string name = 1;
 
   // The declarations in this environment.
-  repeated dev.cel.expr.Decl decl = 2;
+  repeated cel.expr.Decl decl = 2;
 }

@@ -14,14 +14,14 @@
 
 syntax = "proto3";
 
-package dev.cel.expr;
+package cel.expr;
 
-import "dev/cel/expr/syntax.proto";
+import "cel/expr/syntax.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 option cc_enable_arenas = true;
-option go_package = "dev.cel/expr";
+option go_package = "cel.dev/expr";
 option java_multiple_files = true;
 option java_outer_classname = "DeclProto";
 option java_package = "dev.cel.expr";
@@ -247,7 +247,7 @@ message Decl {
   message FunctionDecl {
     // An overload indicates a function's parameter types and return type, and
     // may optionally include a function body described in terms of
-    // [Expr][dev.cel.expr.Expr] values.
+    // [Expr][cel.expr.Expr] values.
     //
     // Functions overloads are declared in either a function or method
     // call-style. For methods, the `params[0]` is the expected type of the
@@ -259,11 +259,11 @@ message Decl {
       // Required. Globally unique overload name of the function which reflects
       // the function name and argument types.
       //
-      // This will be used by a [Reference][dev.cel.expr.Reference] to
+      // This will be used by a [Reference][cel.expr.Reference] to
       // indicate the `overload_id` that was resolved for the function `name`.
       string overload_id = 1;
 
-      // List of function parameter [Type][dev.cel.expr.Type] values.
+      // List of function parameter [Type][cel.expr.Type] values.
       //
       // Param types are disjoint after generic type parameters have been
       // replaced with the type `DYN`. Since the `DYN` type is compatible with
@@ -303,13 +303,13 @@ message Decl {
   // The fully qualified name of the declaration.
   //
   // Declarations are organized in containers and this represents the full path
-  // to the declaration in its container, as in `dev.cel.expr.Decl`.
+  // to the declaration in its container, as in `cel.expr.Decl`.
   //
   // Declarations used as
-  // [FunctionDecl.Overload][dev.cel.expr.Decl.FunctionDecl.Overload]
+  // [FunctionDecl.Overload][cel.expr.Decl.FunctionDecl.Overload]
   // parameters may or may not have a name depending on whether the overload is
   // function declaration or a function definition containing a result
-  // [Expr][dev.cel.expr.Expr].
+  // [Expr][cel.expr.Expr].
   string name = 1;
 
   // Required. The declaration kind.
@@ -335,7 +335,7 @@ message Reference {
   // type checker attempts to narrow down this list as much as possible.
   //
   // Empty if this is not a reference to a
-  // [Decl.FunctionDecl][dev.cel.expr.Decl.FunctionDecl].
+  // [Decl.FunctionDecl][cel.expr.Decl.FunctionDecl].
   repeated string overload_id = 3;
 
   // For references to constants, this may contain the value of the

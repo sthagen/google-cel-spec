@@ -14,15 +14,15 @@
 
 syntax = "proto3";
 
-package dev.cel.expr.conformance;
+package cel.expr.conformance;
 
-import "dev/cel/expr/checked.proto";
-import "dev/cel/expr/eval.proto";
-import "dev/cel/expr/syntax.proto";
+import "cel/expr/checked.proto";
+import "cel/expr/eval.proto";
+import "cel/expr/syntax.proto";
 import "google/rpc/status.proto";
 
 option cc_enable_arenas = true;
-option go_package = "dev.cel/expr/conformance";
+option go_package = "cel.dev/expr/conformance";
 option java_multiple_files = true;
 option java_outer_classname = "ConformanceServiceProto";
 option java_package = "dev.cel.expr.conformance";
@@ -66,7 +66,7 @@ message ParseRequest {
 // Response message for the Parse method.
 message ParseResponse {
   // The parsed representation, or unset if parsing failed.
-  dev.cel.expr.ParsedExpr parsed_expr = 1;
+  cel.expr.ParsedExpr parsed_expr = 1;
 
   // Any number of issues with [StatusDetails][] as the details.
   repeated google.rpc.Status issues = 2;
@@ -75,12 +75,12 @@ message ParseResponse {
 // Request message for the Check method.
 message CheckRequest {
   // Required. The parsed representation of the CEL program.
-  dev.cel.expr.ParsedExpr parsed_expr = 1;
+  cel.expr.ParsedExpr parsed_expr = 1;
 
   // Declarations of types for external variables and functions.
   // Required if program uses external variables or functions
   // not in the default environment.
-  repeated dev.cel.expr.Decl type_env = 2;
+  repeated cel.expr.Decl type_env = 2;
 
   // The protocol buffer context.  See "Name Resolution" in the
   // Language Definition.
@@ -95,7 +95,7 @@ message CheckRequest {
 // Response message for the Check method.
 message CheckResponse {
   // The annotated representation, or unset if checking failed.
-  dev.cel.expr.CheckedExpr checked_expr = 1;
+  cel.expr.CheckedExpr checked_expr = 1;
 
   // Any number of issues with [StatusDetails][] as the details.
   repeated google.rpc.Status issues = 2;
@@ -106,15 +106,15 @@ message EvalRequest {
   // Required. Either the parsed or annotated representation of the CEL program.
   oneof expr_kind {
     // Evaluate based on the parsed representation.
-    dev.cel.expr.ParsedExpr parsed_expr = 1;
+    cel.expr.ParsedExpr parsed_expr = 1;
 
     // Evaluate based on the checked representation.
-    dev.cel.expr.CheckedExpr checked_expr = 2;
+    cel.expr.CheckedExpr checked_expr = 2;
   }
 
   // Bindings for the external variables.  The types SHOULD be compatible
   // with the type environment in [CheckRequest][google.api.expr.conformance.v1alpha1.CheckRequest], if checked.
-  map<string, dev.cel.expr.ExprValue> bindings = 3;
+  map<string, cel.expr.ExprValue> bindings = 3;
 
   // SHOULD be the same container as used in [CheckRequest][google.api.expr.conformance.v1alpha1.CheckRequest], if checked.
   string container = 4;
@@ -123,7 +123,7 @@ message EvalRequest {
 // Response message for the Eval method.
 message EvalResponse {
   // The execution result, or unset if execution couldn't start.
-  dev.cel.expr.ExprValue result = 1;
+  cel.expr.ExprValue result = 1;
 
   // Any number of issues with [StatusDetails][] as the details.
   // Note that CEL execution errors are reified into [ExprValue][].

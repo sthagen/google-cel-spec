@@ -33,7 +33,7 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 go_proto_library(
     name = "test_all_types_go_proto",
-    importpath = "dev.cel/expr/conformance/proto2",
+    importpath = "cel.dev/expr/conformance/proto3",
     protos = [":test_all_types_proto"],
 )
 
