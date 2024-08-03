@@ -704,27 +704,27 @@ macros are:
     rest to `false`. Any other combination of boolean results evaluates to
     `false`, and any predicate error causes the macro to raise an error.
 *   `e.map(x, t)`:
-  *    transforms a list `e` by taking each element `x` to the
-       function given by the expression `t`, which can use the variable `x`. For
-       instance, `[1, 2, 3].map(n, n * n)` evaluates to `[1, 4, 9]`. Any evaluation
-       error for any element causes the macro to raise an error.
-  *    transforms a map `e` by taking each key in the map `x` to the function 
-       given by the expression `t`, which can use the variable `x`. For
-       instance, `{'one': 1, 'two': 2}.map(k, k)` evaluates to `['one', 'two']`. 
-       Any evaluation error for any element causes the macro to raise an error.
+    *    transforms a list `e` by taking each element `x` to the
+         function given by the expression `t`, which can use the variable `x`. For
+         instance, `[1, 2, 3].map(n, n * n)` evaluates to `[1, 4, 9]`. Any evaluation
+         error for any element causes the macro to raise an error.
+    *    transforms a map `e` by taking each key in the map `x` to the function 
+         given by the expression `t`, which can use the variable `x`. For
+         instance, `{'one': 1, 'two': 2}.map(k, k)` evaluates to `['one', 'two']`. 
+         Any evaluation error for any element causes the macro to raise an error.
 *   `e.map(x, p, t)`: Same as the two-arg map but with a conditional `p` filter
     before the value is transformed.
 *   `e.filter(x, p)`: 
-  *    for a list `e`, returns the sublist of all elements `x` which
-       evaluate to `true` in the predicate expression `p` (which can use variable
-       `x`). For instance, `[1, 2, 3].filter(i, i % 2 > 0)` evaluates to `[1, 3]`.
-       If no elements evaluate to `true`, the result is an empty list. Any
-       evaluation error for any element causes the macro to raise an error.
-  *    for a map `e`, returns the list of all map keys `x` which
-       evaluate to `true` in the predicate expression `p` (which can use variable
-       `x`). For instance, `{'one': 1, 'two': 2}.filter(k, k == 'one')` evaluates
-       to `['one']`. If no elements evaluate to `true`, the result is an empty
-       list. Any evaluation error for any element causes the macro to raise an error.
+    *    for a list `e`, returns the sublist of all elements `x` which
+         evaluate to `true` in the predicate expression `p` (which can use variable
+         `x`). For instance, `[1, 2, 3].filter(i, i % 2 > 0)` evaluates to `[1, 3]`.
+         If no elements evaluate to `true`, the result is an empty list. Any
+         evaluation error for any element causes the macro to raise an error.
+    *    for a map `e`, returns the list of all map keys `x` which
+         evaluate to `true` in the predicate expression `p` (which can use variable
+         `x`). For instance, `{'one': 1, 'two': 2}.filter(k, k == 'one')` evaluates
+         to `['one']`. If no elements evaluate to `true`, the result is an empty
+         list. Any evaluation error for any element causes the macro to raise an error.
 
 ### Field Selection
 
@@ -1835,7 +1835,7 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="1">
+    <th rowspan="2">
       bool
     </th>
     <td>
@@ -1846,7 +1846,15 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="2">
+    <td>
+      (bool) -> bool
+    </td>
+    <td>
+      identity
+    </td>
+  </tr>
+  <tr>
+    <th rowspan="3">
       bytes
     </th>
     <td>
@@ -1854,6 +1862,14 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
     <td>
       type denotation
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (bytes) -> bytes
+    </td>
+    <td>
+      identity
     </td>
   </tr>
   <tr>
@@ -1877,7 +1893,7 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="4">
+    <th rowspan="5">
       double
     </th>
     <td>
@@ -1885,6 +1901,14 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
     <td>
       type denotation
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (double) -> double
+    </td>
+    <td>
+      identity
     </td>
   </tr>
   <tr>
@@ -1912,9 +1936,17 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="1">
+    <th rowspan="2">
       duration
     </th>
+    <td>
+      (google.protobuf.Duration) -> google.protobuf.Duration
+    </td>
+    <td>
+      identity
+    </td>
+  </tr>
+  <tr>
     <td>
       (string) -> google.protobuf.Duration
     </td>
@@ -2180,7 +2212,7 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="6">
+    <th rowspan="7">
       int
     </th>
     <td>
@@ -2188,6 +2220,14 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
     <td>
       type denotation
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (int) -> int
+    </td>
+    <td>
+      identity
     </td>
   </tr>
   <tr>
@@ -2333,7 +2373,7 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="7">
+    <th rowspan="8">
       string
     </th>
     <td>
@@ -2341,6 +2381,14 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
     <td>
       type denotation
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (string) -> string
+    </td>
+    <td>
+      identity
     </td>
   </tr>
   <tr>
@@ -2392,9 +2440,17 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
   </tr>
   <tr>
-    <th rowspan="1">
+    <th rowspan="2">
       timestamp
     </th>
+    <td>
+      (google.protobuf.Timestamp) -> google.protobuf.Timestamp
+    </td>
+    <td>
+      identity
+    </td>
+  </tr>
+  <tr>
     <td>
       (string) -> google.protobuf.Timestamp
     </td>
@@ -2431,6 +2487,14 @@ See [cel-go/issues/9](https://github.com/google/cel-go/issues/9).
     </td>
     <td>
       type denotation
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (uint) -> uint
+    </td>
+    <td>
+      identity
     </td>
   </tr>
   <tr>
