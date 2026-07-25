@@ -607,33 +607,33 @@ section {
 
   test {
     name: "single_quoted_escaped_punctuation"
-    expr: "b' \\\\ \\\? \\\" \\\' \\` '"
-    value: { bytes_value: " \\ \? \" \' ` " }
+    expr: "b' \\\\ \\? \\\" \\\' \\` '"
+    value: { bytes_value: " \\ ? \" \' ` " }
   }
   test {
     name: "double_quoted_escaped_punctuation"
-    expr: 'b" \\\\ \\\? \\\" \\\' \\` "'
-    value: { bytes_value: " \\ \? \" \' ` " }
+    expr: 'b" \\\\ \\? \\\" \\\' \\` "'
+    value: { bytes_value: " \\ ? \" \' ` " }
   }
   test {
     name: "triple_single_quoted_escaped_punctuation"
-    expr: "b''' \\\\ \\\? \\\" \\\' \\` '''"
-    value: { bytes_value: " \\ \? \" \' ` " }
+    expr: "b''' \\\\ \\? \\\" \\\' \\` '''"
+    value: { bytes_value: " \\ ? \" \' ` " }
   }
   test {
     name: "triple_double_quoted_escaped_punctuation"
-    expr: 'b""" \\\\ \\\? \\\" \\\' \\` """'
-    value: { bytes_value: " \\ \? \" \' ` " }
+    expr: 'b""" \\\\ \\? \\\" \\\' \\` """'
+    value: { bytes_value: " \\ ? \" \' ` " }
   }
   test {
     name: "triple_single_quoted_unescaped_punctuation"
     expr: "b''' ? \" \' ` '''"
-    value: { bytes_value: " \? \" \' ` " }
+    value: { bytes_value: " ? \" \' ` " }
   }
   test {
     name: "triple_double_quoted_unescaped_punctuation"
     expr: 'b""" ? \" \' ` """'
-    value: { bytes_value: " \? \" \' ` " }
+    value: { bytes_value: " ? \" \' ` " }
   }
 
   test {
